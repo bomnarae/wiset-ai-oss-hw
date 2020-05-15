@@ -49,7 +49,7 @@ if (KEY_STATUS.space) {
   }
 }
 ```
-코드행 423과 424 사이에 코드`this.delayBeforeBullet = 10;`를 추가한다.
+1. 코드행 423과 424 사이에 코드`this.delayBeforeBullet = 10;`를 추가한다.
 
 수정된 코드는 다음과 같다:
 ```JavaScript
@@ -75,6 +75,10 @@ if (KEY_STATUS.space) {
   }
 }
 ```
+2. 수정된 `game.js`파일 커밋할 목록에 추가 `git add game.js` 한다.
+3. 커밋 `git commit`하고 커밋 메세지를 작성하고 저장한다.
+4. `git push origin master`해서 깃허브에 커밋들을 밀어넣는다.
+
 
 
 ### 힌트
