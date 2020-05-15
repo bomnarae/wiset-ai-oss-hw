@@ -22,6 +22,61 @@ index.html 파일을 열고 게임을 직접 실행해 봅시다.
 
 (여기에 버그를 유발한 커밋의 id와 어떻게 하면 버그를 수정할 수 있는지 적어주세요.)
 
+#### 버그를 유발한 커밋의 id: 25ede83
+
+#### 버그를 수정 방법
+
+가장 최근 커밋(커밋 id: 3884eab)에서 game.js 파일의 코드행 422 ~ 441의 코드는 다음과 같다:
+```JavaScript
+if (KEY_STATUS.space) {
+  if (this.delayBeforeBullet <= 0) {
+    for (var i = 0; i < this.bullets.length; i++) {
+      if (!this.bullets[i].visible) {
+        SFX.laser();
+        var bullet = this.bullets[i];
+        var rad = ((this.rot-90) * Math.PI)/180;
+        var vectorx = Math.cos(rad);
+        var vectory = Math.sin(rad);
+        // move to the nose of the ship
+        bullet.x = this.x + vectorx * 4;
+        bullet.y = this.y + vectory * 4;
+        bullet.vel.x = 6 * vectorx + this.vel.x;
+        bullet.vel.y = 6 * vectory + this.vel.y;
+        bullet.visible = true;
+        break;
+      }
+    }
+  }
+}
+```
+코드행 423과 424 사이에 코드`this.delayBeforeBullet = 10;`를 추가한다.
+
+수정된 코드는 다음과 같다:
+```JavaScript
+if (KEY_STATUS.space) {
+  if (this.delayBeforeBullet <= 0) {
+    this.delayBeforeBullet = 10;
+    for (var i = 0; i < this.bullets.length; i++) {
+      if (!this.bullets[i].visible) {
+        SFX.laser();
+        var bullet = this.bullets[i];
+        var rad = ((this.rot-90) * Math.PI)/180;
+        var vectorx = Math.cos(rad);
+        var vectory = Math.sin(rad);
+        // move to the nose of the ship
+        bullet.x = this.x + vectorx * 4;
+        bullet.y = this.y + vectory * 4;
+        bullet.vel.x = 6 * vectorx + this.vel.x;
+        bullet.vel.y = 6 * vectory + this.vel.y;
+        bullet.visible = true;
+        break;
+      }
+    }
+  }
+}
+```
+
+
 ### 힌트
 
 과제 2를 통해 커밋도 체크아웃 할 수 있다는 것을 배웠습니다. 이전 커밋을 체크하웃하면 타임머신을 타고 과거로 돌아갈 수 있습니다!
